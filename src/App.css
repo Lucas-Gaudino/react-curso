@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Archivo Narrow'), local('ArchivoNarrow-Regular'),
+    url(https://fonts.gstatic.com/s/archivonarrow/v9/tss0ApVBdCYD5Q7hcxTE1ArZ0Yb3g31S2s8p.ttf)
+      format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'Archivo Narrow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
   text-align: center;
 }
