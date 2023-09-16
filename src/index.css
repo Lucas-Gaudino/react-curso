@@ -15,11 +15,15 @@ code {
 }
 
 .cartWidget span{
-  color: black;
+  color: white;
 
 }
 
+.cart-widget{
+  color: white;
+}
+
 span .cartWidget{
-  color: black;
+  color: white;
 }
 
