@@ -3,27 +3,45 @@ import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { useState } from 'react';
+import Cart from './components/Cart'; 
 
 function App() {
 
-  const itemsMock = [
-    { id: '1', name: 'God of War', description: 'EL mejor juego de accion de la historia mundial', price: '$59.99', category: 'playstation' },
-    { id: '2', name: 'HALO V', description: 'El mejor juego de accion de la historia, no le hagan caso a GOD OF WAR >:C', price: '$49.99', category: 'xbox' },
-  ];
+  const [cart, setCart] = useState([]);
 
-  return (
-    <div className="App">
+  const addToCart = (product, quantity) => {
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+        setCart(cart.map(item => item.id === product.id 
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        ));
+    } else {
+      setCart([...cart, { ...product, quantity }]);  
+    }
+}
+const removeFromCart = (productId) => {
+  setCart(cart.filter(item => item.id !== productId));
+}
+
+
+return (
+  <div className="App">
       <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<ItemListContainer items={itemsMock} greeting="Bienvenido a la Tienda N°1 de Juegos Digitales de zona sur." />} />
-          <Route path="/category/:id" element={<ItemListContainer items={itemsMock} />} />
-          <Route path="/item/:id" element={<ItemDetailContainer />} />
-        </Routes>
+           <NavBar cart={cart} />
+          <Routes>
+            <Route path="/category/:categoriaId" element={<ItemListContainer addToCart={addToCart} />} />
+              <Route path="/item/:id" element={<ItemDetailContainer addToCart={addToCart} />} />
+              <Route path="/cart" element={<Cart cartItems={cart} removeFromCart={removeFromCart} />} />
+              <Route index path="/" element={<ItemListContainer addToCart={addToCart} />} />
+          </Routes>
       </Router>
-    </div>
-  );
+  </div>
+);
+
+
 }
 
 export default App;

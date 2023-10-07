@@ -1,8 +1,67 @@
-.item-animation {
-    transition: all 0.3s;
+/* Item.css */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Archivo Narrow'), local('ArchivoNarrow-Regular'),
+    url(https://fonts.gstatic.com/s/archivonarrow/v9/tss0ApVBdCYD5Q7hcxTE1ArZ0Yb3g31S2s8p.ttf)
+      format('truetype');
+}
+
+.item {
+    max-width: 18rem;
+    transition: transform 0.5s;
   }
   
-  .item-animation:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  .item:hover {
+    transform: scale(1.05);
+  }
+  
+  .item-image {
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-family: 'Archivo Narrow', sans-serif;
+
+    font-weight: bold;
+  }
+  
+  .card-text.price {
+    font-family: 'Archivo Narrow', sans-serif;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: orange;
+  }
+  
+  .card-text.stock {
+    font-size: 0.8rem;
+    color: #888;
+    display: none;  /* esto oculta el stock por defecto */
+  }
+  
+  .item:hover .card-text.stock {
+    display: block;  /* muestra el stock al pasar el ratón por encima */
+  }
+  
+  .stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+  }
+  
+
+  .btn-primary:focus {
+    transform: scale(0.95);  /* Reduce el tamaño del botón ligeramente */
+    transition: transform 0.2s;  /* Efecto suave */
   }

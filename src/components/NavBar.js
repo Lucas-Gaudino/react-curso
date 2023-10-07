@@ -4,7 +4,7 @@ import CartWidget from './CartWidget';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 
-const NavBar = () => {
+const NavBar = ({cart}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
 
@@ -16,23 +16,27 @@ const NavBar = () => {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul className="navbar-nav">
             <li className="nav-item">
-                <Link className="nav-link text-white" to="/category/playstation">PlayStation</Link>
+                <Link className="nav-link text-white" to="/category/3">PlayStation</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link text-white" to="/category/xbox">X-Box</Link>
+                <Link className="nav-link text-white" to="/category/1">X-Box</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link text-white" to="/category/pc">PC</Link>
+                <Link className="nav-link text-white" to="/category/2">PC</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link text-white" to="/category/nintendo">Nintendo</Link>
+                <Link className="nav-link text-white" to="/category/4">Nintendo</Link>
             </li>
             </ul>
         </div>
 
-        <div className="d-flex ml-auto cart-widget">
-            <CartWidget />
-        </div>
+      
+        <li className="nav-item">
+            <Link className="nav-link text-white" to="/cart">
+            <CartWidget itemCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+
+            </Link>
+        </li>
     </nav>
   );
 }

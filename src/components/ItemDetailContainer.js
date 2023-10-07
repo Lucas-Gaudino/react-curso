@@ -1,32 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import '../ItemDetailContainer.css';  // Importa el archivo CSS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({addToCart}) => {
   const { id } = useParams(); // Extraemos el 'id' de la URL
-  const [itemDetail, setItemDetail] = useState(null);
+  const [itemDetail, setItemDetail] = useState();
 
-  // Array de datos mockeados. En el futuro, esto puede ser reemplazado por datos de una API
-  const mockDataArray = [
-    { id: '1', title: 'God Of War', description: 'YO SOY EL MEJOR JUEGO DE ACCION DE LA HISTORIA', price: '$59.99' },
-    { id: '2', title: 'HALO v', description: 'NADIE JUEGA GOD OF WAR! >:(', price: '$49.99' }
-  ];
 
   useEffect(() => {
-    // Buscamos en el array el ítem que coincide con el 'id' de la URL
-    const foundItem = mockDataArray.find(item => item.id === id);
-    // Establecemos ese ítem como el detalle actual
-    setItemDetail(foundItem);
+    fetch(`https://9588-2800-810-432-8605-f5c9-4977-a116-792.ngrok-free.app/api/productos/detalle/${id}`, {
+      headers: {
+        "ngrok-skip-browser-warning": "any_value_you_like"
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setItemDetail(data);
+    })
+    .catch(error => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
   }, [id]);
+
 
   return (
     <div className="container mt-4 item-detail-animation">
       {itemDetail ? (
         <div className="card shadow-lg p-3 mb-5 bg-white rounded">
           <div className="card-body">
-            <h2 className="card-title display-4">{itemDetail.title}</h2> {/* Título más grande */}
-            <p className="card-text lead">{itemDetail.description}</p> {/* Descripción más destacada */}
-            <p className="card-text text-primary font-weight-bold display-6">Precio: {itemDetail.price}</p> {/* Precio resaltado */}
+            <h2 className="card-title display-4">{itemDetail.descripcion}</h2> {/* Título más grande */}
+            <img src={itemDetail.imagenUrl} alt={itemDetail.descripcion} className="card-img-top item-image item-detail-image"/>
+            <p className="card-text lead">{itemDetail.descripcion}</p> {/* Descripción más destacada */}
+            <p className="card-text text-primary font-weight-bold display-6">Precio: {itemDetail.precio}</p> {/* Precio resaltado */}
+            <button 
+            className='btn btn-primary position-relative ml-1'
+            onClick={() => addToCart(itemDetail, 1)}
+            >
+             <FontAwesomeIcon icon={faCartPlus} />
+            
+            </button>
+
           </div>
         </div>
       ) : (
@@ -36,6 +56,7 @@ const ItemDetailContainer = () => {
       )}
     </div>
 );
+
 
 }
 export default ItemDetailContainer;
