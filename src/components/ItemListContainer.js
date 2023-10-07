@@ -8,7 +8,7 @@ const ItemListContainer = ({addToCart}) => {
   const { categoriaId } = useParams();
 
   useEffect(() => {
-    let url = "https://e7ae-2800-810-432-8605-f5c9-4977-a116-792.ngrok-free.app/api/productos";
+    let url = "https://f473-2800-810-432-8605-f5c9-4977-a116-792.ngrok-free.app/api/productos";
     // Si hay un categoriaId en los parámetros, actualizamos la URL para filtrar por categoría.
     if (categoriaId) {
         console.log(categoriaId)
