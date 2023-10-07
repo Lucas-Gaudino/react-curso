@@ -10,7 +10,7 @@ const ItemDetailContainer = ({addToCart}) => {
 
 
   useEffect(() => {
-    fetch(`https://9588-2800-810-432-8605-f5c9-4977-a116-792.ngrok-free.app/api/productos/detalle/${id}`, {
+    fetch(`https://e7ae-2800-810-432-8605-f5c9-4977-a116-792.ngrok-free.app/api/productos/detalle/${id}`, {
       headers: {
         "ngrok-skip-browser-warning": "any_value_you_like"
       }
