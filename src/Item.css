@@ -16,7 +16,7 @@
   }
   
   .item:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
   
   .item-image {
@@ -45,7 +45,9 @@
   }
   
   .item:hover .card-text.stock {
+    font-size: 0.8rem;
     display: block;  /* muestra el stock al pasar el ratón por encima */
+    transition: all 0.5s;
   }
   
   .stretched-link::after {
@@ -65,3 +67,5 @@
     transform: scale(0.95);  /* Reduce el tamaño del botón ligeramente */
     transition: transform 0.2s;  /* Efecto suave */
   }
+
+

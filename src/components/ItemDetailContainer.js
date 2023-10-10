@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import '../ItemDetailContainer.css';  // Importa el archivo CSS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import mediosPagos from '../medios.jpg';
 
 const ItemDetailContainer = ({addToCart}) => {
   const { id } = useParams(); // Extraemos el 'id' de la URL
@@ -35,18 +38,34 @@ const ItemDetailContainer = ({addToCart}) => {
       {itemDetail ? (
         <div className="card shadow-lg p-3 mb-5 bg-white rounded">
           <div className="card-body">
-            <h2 className="card-title display-4">{itemDetail.descripcion}</h2> {/* Título más grande */}
-            <img src={itemDetail.imagenUrl} alt={itemDetail.descripcion} className="card-img-top item-image item-detail-image"/>
-            <p className="card-text lead">{itemDetail.descripcion}</p> {/* Descripción más destacada */}
-            <p className="card-text text-primary font-weight-bold display-6">Precio: {itemDetail.precio}</p> {/* Precio resaltado */}
-            <button 
-            className='btn btn-primary position-relative ml-1'
-            onClick={() => addToCart(itemDetail, 1)}
-            >
-             <FontAwesomeIcon icon={faCartPlus} />
-            
-            </button>
+            <h3 className="card-title mb-5 display-6">{itemDetail.descripcion}</h3>
 
+            <div className="d-flex" >
+              <div>
+                <img src={itemDetail.imagenUrl} alt={itemDetail.descripcion} className="card-img-top item-image item-detail-image"/>
+              </div>
+              <div className="descDetails ml-3">
+              <p className="card-text ">
+              <p className="card-text text-primary font-weight-bold display-6">${itemDetail.precio}.00 USD</p> {/* Precio resaltado */}
+              
+                <FontAwesomeIcon className="mr-1" icon={faAddressCard}/>
+                3 cuotas sin interés de ${itemDetail.precio/3}.00 USD</p> 
+                <p className="card-text ">
+                <FontAwesomeIcon className="mr-1" icon={faCreditCard}/>
+                20% de descuento pagando con Transferencia bancaria / Dinero en cuenta Mercadopago / Dinero en cuenta Billeteras virtuales
+                </p>
+                <img className="card-image" src={mediosPagos} alt="medios de pago" width="250" height="100"/>
+               <div className="divider"> </div>
+              <button 
+              className='btn btn-primary position-relative ml-1 p-2' style={{fontSize: '20px', width: '100'}}
+              onClick={() => addToCart(itemDetail, 1)}
+              >
+                Añadir al carrito 
+              <FontAwesomeIcon className="ml-1" icon={faCartPlus} />
+              
+              </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

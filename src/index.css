@@ -14,6 +14,10 @@ code {
     monospace;
 }
 
+button, a {
+  transition: all 0.3s ease;
+}
+
 .cartWidget span{
   color: white;
 
@@ -25,5 +29,14 @@ code {
 
 span .cartWidget{
   color: white;
+  
 }
 
+li::marker {
+  display: none!important;
+}
+
+.divider{
+  border-bottom: 1px solid #e0e0e0;
+  margin: 20px 0;
+}
