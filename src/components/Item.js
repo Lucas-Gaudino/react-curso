@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-const Item = ({ id, descripcion, precio, imagenUrl, stock, addToCart, product }) => {
+const Item = ({ id, descripcion, precio, imagen_url, stock, addToCart, product }) => {
     return (
         <div className="col-md-4 mb-4">
 
         <div className="item card shadow-sm">
-          <img src={imagenUrl} alt={descripcion} className="card-img-top item-image"/>
+          <img src={imagen_url} alt={descripcion} className="card-img-top item-image"/>
 
           <div className="card-body">
             <h5 className="card-title">{descripcion}</h5>
@@ -21,7 +21,7 @@ const Item = ({ id, descripcion, precio, imagenUrl, stock, addToCart, product })
             <Link to={`/item/${id}`} className="btn btn-primary">Ver detalles</Link>
             <button 
             className='btn btn-primary position-relative ml-1'
-            onClick={() => addToCart({id, descripcion, precio, imagenUrl, stock}, 1)}
+            onClick={() => addToCart({id, descripcion, precio, imagen_url, stock}, 1)}
             >
              <FontAwesomeIcon icon={faCartPlus} />
             
